@@ -8,19 +8,13 @@ const timeInput = document.getElementById('time-input');
 let intervalId;
 let secondsRemaining = timeInput.value;
 
-//
-
 $(document).ready(function () {
-
-//    $("#intention").val("");
     
     resetTimer();
 
 });
 
 function resetTimer() {
-
-    alert("interval id / " + intervalId);
 
     clearInterval(intervalId);
 
@@ -46,8 +40,6 @@ function enableButtons(action) {
 
 function startTimer() {
 
-    alert("start timer!");
-
     intervalId = setInterval(updateTimer, 1000);
 
     startButton.disabled = true;
@@ -61,8 +53,6 @@ function startTimer() {
 }
 
 function pauseTimer() {
-
-    alert("pauses timer!");
 
     clearInterval(intervalId);
 
@@ -87,29 +77,21 @@ function updateTimer() {
 
     countdownTimer.textContent = formattedTime;
 
-
     secondsRemaining--;
 
     if (secondsRemaining >= 0) {
 
-//    setTimeout(updateTimer, 1000);
-
     } else {
 
-    countdownTimer.textContent = 'Time\'s up, partner!';
+        countdownTimer.textContent = 'Time\'s up, partner!';
 
-//    clearInterval(intervalId);
+        enableButtons('reset');
 
-    enableButtons('reset');
-resetTimer();
-    }
+        resetTimer();
 
     }
 
-
-
-
-
+}
 
 startButton.addEventListener('click', startTimer);
 pauseButton.addEventListener('click', pauseTimer);
