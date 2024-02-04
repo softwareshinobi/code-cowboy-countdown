@@ -1,0 +1,287 @@
+
+##########################################
+##
+## Dedicated Walls Of Fire Configurations
+##
+##########################################
+
+    walls-of-fire-wordpress:
+
+        container_name: walls-of-fire-wordpress
+
+        image: wordpress:latest
+
+        depends_on:
+
+          - walls-of-fire-database
+
+        ports:
+
+          - "28080:80"
+
+        restart: always
+
+        environment:
+
+          WORDPRESS_DB_HOST: walls-of-fire-database:3306
+
+          WORDPRESS_DB_USER: agent_eight
+
+          WORDPRESS_DB_PASSWORD: agent_eight
+
+          WORDPRESS_DB_NAME: agent_eight
+
+          VIRTUAL_HOST: wallsoffire.softwareshinobi.digital
+
+          LETSENCRYPT_HOST: wallsoffire.softwareshinobi.digital
+
+        volumes:
+
+          -  ./walls-of-fire/container-volumes/wordpress-server:/var/www/html
+
+    walls-of-fire-database:
+
+        container_name: walls-of-fire-database
+
+        image: mariadb:latest
+
+        environment:
+
+          MYSQL_ROOT_PASSWORD: aggiepride
+
+          MYSQL_DATABASE: agent_eight
+
+          MYSQL_USER: agent_eight
+
+          MYSQL_PASSWORD: agent_eight
+
+        ports:
+
+          - "28306:3306"
+
+        volumes:
+
+          - ./walls-of-fire/container-volumes/mysql-server/:/var/lib/mysql
+
+    wallsoffiredeliverancemin.com:
+
+        container_name: wallsoffiredeliverancemin.com
+
+        image: nginx
+
+        links:
+
+            - walls-of-fire-database
+
+        restart: always
+
+        environment:
+
+            VIRTUAL_HOST: wallsoffiredeliverancemin.com
+
+            LETSENCRYPT_HOST: wallsoffiredeliverancemin.com
+
+##########################################
+##
+## Dedicated Software Shinobi Configuration
+##
+##########################################
+
+    software-shinobi-digital-database:
+
+        container_name: software-shinobi-digital-database
+
+        image: mariadb:latest
+
+        environment:
+
+          MYSQL_ROOT_PASSWORD: aggiepride
+
+          MYSQL_DATABASE: agent_eight
+
+          MYSQL_USER: agent_eight
+
+          MYSQL_PASSWORD: agent_eight
+
+        volumes:
+
+          - ./softwareshinobi.digital/container-volumes/mysql-server/:/var/lib/mysql
+
+    software-shinobi-digital-phpmyadmin:
+
+        container_name: software-shinobi-digital-phpmyadmin
+
+        image: beeyev/phpmyadmin-lightweight:latest
+
+        links:
+
+            - walls-of-fire-database
+
+
+        restart: always
+
+        environment:
+
+            PMA_HOST: walls-of-fire-database
+
+            PMA_PORT: 3306
+
+            PMA_ARBITRARY: 1
+
+            VIRTUAL_HOST: database.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: database.softwareshinobi.digital
+
+    software-shinobi-digital-wordpress:
+
+        container_name: software-shinobi-digital-wordpress
+
+        image: wordpress:latest
+
+        depends_on:
+
+          - software-shinobi-digital-database
+
+        restart: always
+
+        environment:
+
+          WORDPRESS_DB_HOST: software-shinobi-digital-database:3306
+
+          WORDPRESS_DB_USER: agent_eight
+
+          WORDPRESS_DB_PASSWORD: agent_eight
+
+          WORDPRESS_DB_NAME: agent_eight
+
+          VIRTUAL_HOST: softwareshinobi.digital
+
+          LETSENCRYPT_HOST: softwareshinobi.digital
+
+        volumes:
+
+          -  ./softwareshinobi.digital/container-volumes/wordpress-server:/var/www/html
+
+    software-shinobi-digital-academy:
+
+        container_name: software-shinobi-digital-academy
+
+        image: nginx
+
+        links:
+
+            - software-shinobi-digital-database
+
+        restart: always
+
+        environment:
+
+            VIRTUAL_HOST: academy.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: academy.softwareshinobi.digital
+
+    software-shinobi-digital-code:
+
+        container_name: software-shinobi-digital-code
+
+        image: gitea/gitea:1.16.8
+
+        links:
+
+            - software-shinobi-digital-database
+
+        restart: always
+
+        environment:
+
+            LETSENCRYPT_HOST: code.softwareshinobi.digital
+
+            VIRTUAL_HOST: code.softwareshinobi.digital
+
+            VIRTUAL_PORT: 3000
+
+            USER_UID: 1000
+
+            USER_GID: 1000
+
+        volumes:
+
+            - ./softwareshinobi.digital/container-volumes/gitea-server:/data
+
+            - /etc/timezone:/etc/timezone:ro
+
+            - /etc/localtime:/etc/localtime:ro
+
+    software-shinobi-links:
+
+        container_name: software-shinobi-links
+
+        image: softwareshinobi/software-shinobi-links
+
+        links:
+
+            - software-shinobi-digital-database
+
+        restart: always
+
+        environment:
+
+            VIRTUAL_HOST: links.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: links.softwareshinobi.digital
+
+    software-shinobi-apis:
+
+        container_name: software-shinobi-apis
+
+        image: softwareshinobi/article-magick-api:2.4
+
+        expose:
+
+            - "8888"
+
+        environment:
+
+            VIRTUAL_HOST: apis.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: apis.softwareshinobi.digital
+
+##########################################
+##
+## Dedicated Dwity Universe
+##
+##########################################
+
+    the-intention-api:
+
+        container_name: the-intention-api
+
+        image: softwareshinobi/the-intention-api:42.0
+
+        expose:
+
+            - "8888"
+
+        environment:
+
+            VIRTUAL_HOST: intention.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: intention.softwareshinobi.digital
+
+    dwity-universe-web:
+
+        container_name: dwity-universe-web
+
+        image: softwareshinobi/dwity-universe-web
+
+        links:
+
+            - software-shinobi-digital-database
+
+        restart: always
+
+        environment:
+
+            VIRTUAL_HOST: dwityuniverse.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: dwityuniverse.softwareshinobi.digital

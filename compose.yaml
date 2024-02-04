@@ -1,10 +1,10 @@
 services:
 
-    software-shinobi-dashboard:
+    valorant-digital-clocks:
 
-        container_name: software-shinobi-dashboard
+        container_name: valorant-digital-clocks
 
-        image: softwareshinobi/software-shinobi-dashboard
+        image: softwareshinobi/valorant-digital-clocks
 
         build: 
 
