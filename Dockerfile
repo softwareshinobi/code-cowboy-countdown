@@ -1,5 +1,5 @@
 ##
-## Dockerfile to transform HTML web site into Docker Image
+## bundle the html files into an httpd image
 ##
 
 FROM httpd
