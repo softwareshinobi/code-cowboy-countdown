@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+
+<head>
+	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-JVYKDW787V"></script>
+	<script>
+	if (location.host === "twentyfive.js.org"){
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-JVYKDW787V');
+	}
+	</script>
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>TwentyFive - A simple Pomodoro time tracker</title>
+
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAEFSURBVDiNrdMhTgNBGMXxX0dV1NavpMmeoAegByAYgichzRqwIMCCIRgsadYQDlAO0BOQ1K6vrahE7OyyXdqFJjwzmW/f/2X2m296Wjp7+jzGBGOMYnmJBeZ5ln40/b0GmGCKCwzawVFrvOA5z9KiDojwPc73gG3NcJNnaRFiYXoALHqn0Iv//N5x7H1a4yQoG/YrnAz7Xi+PJMN+VRpgEpTd3meq63enCdRr1Dj4vqotUxXShOH2rWgGjEJz1/xYhbThYrXZOl1QDgkoVpsfIV0wlkE5YbXaIR0wLALmyivZGdIBrzGvJvEBV7tcHXrMs/S6auKzcjz/qllk/ukxNXXoc/4CfLVozsn8qNgAAAAASUVORK5CYII=">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+	<meta name="apple-mobile-web-app-title" content="TwentyFive">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/image/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/image/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/image/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/image/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" href="assets/image/apple-touch-icon-57x57.png">
+
+	<link rel="apple-touch-startup-image" href="assets/image/splash-startup.png">
+
+
+</head>
+
+<body class="welcome">
+
+	<section id="welcome" class="page welcome">
+		<h1>TwentyFive</h1>
+		<p>A
+			<strong>time tracking</strong> app focused on speed and simplicity that encourages you to follow the
+			<i class="icon" title="Pomodoro, Italian word for Tomato">🍅</i> Pomodoro Technique.</p>
+		<button id="startCountdownWelcome" class="secondary start" title="Start a new task">Start your first task</button>
+	</section>
+
+
+	<section id="countdown" class="page countdown">
+		<div id="progress" class="progress">
+			<div id="bar" class="bar"></div>
+		</div>
+
+
+		<p onclick="manuallyEditScreenText()" id="intention-to-the-universe" class="clock">Tell Me What You Want </p>
+
+
+		<p id="clock" class="clock"></p>
+		<p id="estimate" class="estimate"></p>
+
+
+
+
+		<button id="finishCountdown" class="secondary" title="Finish the current task">I'm done</button>
+		<button id="cancelCountdown" class="cancel" title="Cancel the current task">Cancel</button>
+	</section>
+
+	<section id="naming" class="page naming">
+		<input type="text" id="taskTitle" class="title" placeholder="What have you been working on?" title="Be as descriptive as possible&hellip;">
+		<ul id="suggestionList" class="tags"></ul>
+		<button id="saveNaming" class="primary" title="Save task">Save task</button>
+		<button id="cancelNaming" class="cancel" title="Cancel the current task">Cancel</button>
+	</section>
+
+
+	<section id="list" class="page list">
+		<button id="startCountdown" class="primary start" title="Start a new task">Start a new task</button>
+		<div id="timeResting"></div>
+		<ul id="taskList" class="tasklist"></ul>
+	</section>
+
+	<nav>
+		<ul class="menu">
+			<li>
+				<a href="http://xaviesteve.com/" title="About the author" target="_blank">Contact</a>
+			</li>
+			<li>
+				<a href="https://github.com/luckyshot/twentyfive" title="View source code" target="_blank">Source</a>
+			</li>
+			<li>
+				<a id="exportDatabase" href="#" title="Export database via a window prompt">Export</a>
+			</li>
+			<li>
+				<a id="importDatabase" href="#" title="Import database via a window prompt">Import</a>
+			</li>
+			<li>
+				<a id="clearDatabase" href="#" title="Clear all tasks and settings">Reset</a>
+			</li>
+		</ul>
+		☰
+	</nav>
+
+	<!-- Development -->
+	<!-- <script src="assets/js/vendor/fastclick.min.js"></script> -->
+	<!-- <script src="assets/js/vendor/tinycon.min.js"></script> -->
+
+	<!-- Production CDN -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinycon/0.6.5/tinycon.min.js"></script>
+	
+	<script src="assets/js/app.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/dwity-universe.js"></script>
+
+	</body>
+</body>
+
+</html>

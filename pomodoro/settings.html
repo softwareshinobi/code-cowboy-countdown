@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<title>
+
+Pomodoro Timer
+
+</title>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="icon" type="image/png" href="imagery/logo.svg">
+
+<link rel="stylesheet" href="styling/styles.css" />
+
+<script src="scripting/main.js" defer></script>
+
+</head>
+
+<body>
+
+<header class="nav-bar" id="main-nav-bar">
+
+<h1 id="logo">
+
+<a href="index.html">
+
+<i>
+
+Pomme Noire
+
+</i>
+
+</a></h1>
+
+<ul class="nav-list">
+
+<li class="nav-item" id="settings">
+
+<button class="nav-btn" id="settings-btn">
+
+<a href="settings.html" id="settings-link" class="nav-link">
+
+settings
+
+</a>
+
+</button>
+
+</li>
+
+</ul>
+
+</header>
+
+<main class="container">
+
+
+		<section class="settings-container">
+			<div class="body">
+				<div class="pomodoro-length options">
+					<p class="subtitle">pomodoro timer</p>
+					<button class="opt-btn active-pl" id="pl-25">25</button>
+					<button class="opt-btn" id="pl-15">15</button>
+					<button class="opt-btn" id="pl-10">10</button>
+				</div>
+
+				<div class="small-break-length options">
+					<p class="subtitle">small break timer</p>
+					<button class="opt-btn active-sl" id="sl-5">5</button>
+					<button class="opt-btn" id="sl-10">10</button>
+					<button class="opt-btn" id="sl-15">15</button>
+				</div>
+
+				<div class="long-break-length options">
+					<p class="subtitle">long break timer</p>
+					<button class="opt-btn active-lb" id="lb-15">15</button>
+					<button class="opt-btn" id="lb-20">20</button>
+					<button class="opt-btn" id="lb-30">30</button>
+				</div>
+			</div>
+		</section>
+
+</main>
+
+<script src="scripting/settings.js"></script>
+
+</body>
+
+</html>

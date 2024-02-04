@@ -1,0 +1,19 @@
+services:
+
+    valorant-digital-clocks:
+
+        container_name: valorant-digital-clocks
+
+        image: softwareshinobi/valorant-digital-clocks
+
+        build: 
+
+            context: .
+
+            dockerfile: Dockerfile
+
+        restart: always
+
+        ports:
+    
+            - "80:80"
