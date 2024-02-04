@@ -1,17 +1,25 @@
-###
-### Software Shinobi Cloud Server Controller (Web)
-###
+##
+## Dockerfile to transform HTML web site into Docker Image
+##
 
-FROM nginx:latest
+FROM httpd
 
-MAINTAINER Software Shinobi "troy@softwareshinobi.com”
+MAINTAINER Software Shinobi "troy@softwareshinobi.digital"
 
 USER root
 
-RUN rm -frv /usr/share/nginx/html/*
+## set build environment variables
 
-RUN ls /usr/share/nginx/html/
+ENV webServerFileRoot /usr/local/apache2/htdocs/
 
-COPY . /usr/share/nginx/html/
+##
 
-RUN find /usr/share/nginx/html/
+RUN rm -rf $webServerFileRoot
+
+COPY  --chown=www-data ./ $webServerFileRoot
+
+RUN ls -lha $webServerFileRoot
+
+## Expose ports
+
+EXPOSE 80

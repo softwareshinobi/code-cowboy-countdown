@@ -1,15 +1,19 @@
-version: '3'
-
 services:
 
-   dwity-universe:
+    software-shinobi-dashboard:
 
-     container_name: dwity-universe
+        container_name: software-shinobi-dashboard
 
-     image: softwareshinobi/dwity-universe:latest
+        image: softwareshinobi/software-shinobi-dashboard
 
-     restart: "always"
+        build: 
 
-     ports:
+            context: .
 
-       - 80:80
+            dockerfile: Dockerfile
+
+        restart: always
+
+        ports:
+    
+            - "80:80"
